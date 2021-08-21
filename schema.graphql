@@ -1,6 +1,32 @@
-type ExampleEntity @entity {
+type Depositor @entity {
   id: ID!
-  count: BigInt!
-  from: Bytes! # address
-  amount: BigInt! # uint256
+  address: Bytes!
+}
+
+type Deposit implements Transaction @entity {
+  id: ID!
+  amount: BigInt!
+  depositor: Depositor!
+  timestamp: BigInt!
+}
+
+type Withdrawal implements Transaction @entity {
+  id: ID!
+  amount: BigInt!
+  depositor: Depositor!
+  timestamp: BigInt!
+}
+
+type Reward @entity {
+  id: ID!
+  amount: BigInt!
+  depositedAt: BigInt!
+  timestamp: BigInt!
+}
+
+interface Transaction @entity {
+  id: ID!
+  amount: BigInt!
+  depositor: Depositor!
+  timestamp: BigInt!
 }
